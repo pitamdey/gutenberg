@@ -15,6 +15,7 @@ import {
 	ToolbarButton,
 	Tooltip,
 	ToolbarGroup,
+	CheckboxControl,
 } from '@wordpress/components';
 import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes';
 import { __ } from '@wordpress/i18n';
@@ -159,7 +160,7 @@ function getMissingText( type ) {
  * Consider reuseing this components for both blocks.
  */
 function Controls( { attributes, setAttributes, setIsLabelFieldFocused } ) {
-	const { label, url, description, title, rel } = attributes;
+	const { label, url, description, title, rel, opensInNewTab } = attributes;
 	return (
 		<PanelBody title={ __( 'Settings' ) }>
 			<TextControl
@@ -187,6 +188,14 @@ function Controls( { attributes, setAttributes, setIsLabelFieldFocused } ) {
 				} }
 				label={ __( 'Link' ) }
 				autoComplete="off"
+			/>
+			<CheckboxControl
+				__nextHasNoMarginBottom
+				label={ __( 'Open in new tab' ) }
+				checked={ opensInNewTab }
+				onChange={ ( value ) =>
+					setAttributes( { opensInNewTab: value } )
+				}
 			/>
 			<TextareaControl
 				__nextHasNoMarginBottom
